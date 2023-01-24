@@ -1,10 +1,11 @@
 #!/bin/bash
 
-#Check if jq is installed
+#Check if jq is installed and if not install it and restart the script
 if ! [ -x "$(command -v jq)" ]; then
   echo 'Error: jq is not installed.' >&2
   echo 'Installing jq...'
   sudo apt-get install jq
+  source deploy.sh
 fi
 
 # Making it easy to use colors in output
