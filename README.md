@@ -1,6 +1,6 @@
 # kali-aws-jumpbox-deploy
 
-Deploy script for Kali jumpbox for webapp pentesting on AWS\
+Deploy script for Kali jumpbox for webapp pentesting on AWS
 
 requirements:
 
