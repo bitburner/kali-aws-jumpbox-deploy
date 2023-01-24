@@ -6,9 +6,9 @@ requirements:
 
 An AWS login\
 your region, example: us-west-1\
-may need to install jq which the install check is not in the script yet\
-apt-install jq
+<del>may need to install jq which the install check is not in the script yet</del>\
+<del>apt-install jq</del>
 
 Needs added:\
-jq install\
+<del>jq install</del>\
 region checker
