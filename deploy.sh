@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#Check if jq is installed
+if ! [ -x "$(command -v jq)" ]; then
+  echo 'Error: jq is not installed.' >&2
+  echo 'Installing jq...'
+  sudo apt-get install jq
+fi
+
 # Making it easy to use colors in output
 RESET="\033[0m"
 GREEN="\033[0;32m"
