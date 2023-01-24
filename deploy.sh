@@ -11,7 +11,7 @@ fi
 if ! [ -x "$(command -v pv)" ]; then
   echo 'Error: pv is not installed.' >&2
   echo 'Installing pv...'
-  sudo apt-get install jq
+  sudo apt-get install pv
   source deploy.sh
 fi
 # Making it easy to use colors in output
