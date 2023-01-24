@@ -7,7 +7,13 @@ if ! [ -x "$(command -v jq)" ]; then
   sudo apt-get install jq
   source deploy.sh
 fi
-
+#Check if pv is installed and if not install it and restart the script
+if ! [ -x "$(command -v pv)" ]; then
+  echo 'Error: pv is not installed.' >&2
+  echo 'Installing pv...'
+  sudo apt-get install jq
+  source deploy.sh
+fi
 # Making it easy to use colors in output
 RESET="\033[0m"
 GREEN="\033[0;32m"
