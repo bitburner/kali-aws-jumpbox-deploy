@@ -1,4 +1,14 @@
 # kali-aws-jumpbox-deploy
+🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉
+🏴‍☠️                                          🏴‍☠️
+🏴‍☠️    ___      WISE-BITS JUMPBOX     ___    🏴‍☠️
+🏴‍☠️   (o o)                          (o o)   🏴‍☠️
+🏴‍☠️  (  V  )      Deploy Script     (  V  )  🏴‍☠️
+🏴‍☠️  --m-m----------------------------m-m--  🏴‍☠️
+🏴‍☠️                                          🏴‍☠️
+🏴‍☠️              By: B̤̿it̺̕B͓̚urneȑ🔥             🏴‍☠️
+🏴‍☠️                                          🏴‍☠️
+🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉
 Deploy script for Kali jumpbox for webapp pentesting on AWS
 
 requirements:
