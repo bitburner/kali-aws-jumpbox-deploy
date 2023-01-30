@@ -42,14 +42,7 @@ else
     read -p "Enter your AWS access key: " access_key
     read -p "Enter your AWS secret key: " secret_key
     read -p "Enter your AWS session token: " session_token
-    
-    regions=$(aws ec2 describe-regions | jq -r '.Regions[].RegionName')
-    echo -e "$YELLOW Select the region you want to launch the instance in by entering the corresponding number: "
-    echo -e "$regions" | nl -v 0
-    
-    read -p "Enter the number of the region you want to use: " region_choice
-    echo -e "$RESET"
-    region=$(echo -e "$regions" | sed -n "${region_choice}p")
+    read -p "Enter the region you want to launch the instance in: " region
     aws configure set aws_access_key_id $access_key --profile $profile_name
     aws configure set aws_secret_access_key $secret_key --profile $profile_name
     aws configure set aws_session_token $session_token --profile $profile_name
@@ -57,7 +50,6 @@ else
 fi
 
 # set selected or created profile to be used globally in script
-
 export AWS_PROFILE=$profile_name
 
 # Enter your VPC ID
