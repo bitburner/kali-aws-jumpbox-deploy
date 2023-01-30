@@ -146,9 +146,7 @@ fi
 
 echo -e "$RED Creating EC2 instance in AWS$RESET"
 
-#echo "UID $uid"
-
-ec2_id=$(aws ec2 run-instances --image-id $aws_image_id --count 1 --instance-type $i_type --key-name $aws_key_name --security-group-ids $sec_id --subnet-id $sub_id --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=WatchTower,Value="$tag"},{Key=AutomatedID,Value="$uid"}]' | grep InstanceId | cut -d":" -f2 | cut -d'"' -f2)
+ec2_id=$(aws ec2 run-instances --image-id $aws_image_id --count 1 --instance-type $i_type --key-name $aws_key_name --security-group-ids $sec_id --subnet-id $sub_id --associate-public-ip-address --block-device-mappings '[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":30,"DeleteOnTermination":true}}]' --tag-specifications 'ResourceType=instance,Tags=[{Key=WatchTower,Value="$tag"},{Key=AutomatedID,Value="$uid"}]' | grep InstanceId | cut -d":" -f2 | cut -d'"' -f2)
 
 # Log date, time, random ID
 date >> logs.txt
@@ -181,10 +179,8 @@ do
 done
 aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName'
 
-echo -e "should look like this: ssh -i $ssh_key kali@$public_dns"
+echo -e "SSH connect string for later if needed: ssh -i $ssh_key kali@$public_dns"
 
 # connect to SSH
-
-#ssh -o "StrictHostKeyChecking no" -i "$ssh_key" kali@$public_dns
 
 ssh -o "StrictHostKeyChecking no" -t -i "$ssh_key" kali@$public_dns 'bash -s' < commands.sh
