@@ -65,4 +65,4 @@ echo " trying to launch interact script..."
 echo ""
 echo "===================================="
 echo ""
-ssh kali@$public_dns "bash /home/kali/tools/interact.sh"
+bash /home/kali/tools/interact.sh
