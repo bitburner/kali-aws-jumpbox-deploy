@@ -50,4 +50,3 @@ sudo git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
 cd ~
-bash interact.sh
