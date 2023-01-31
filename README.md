@@ -6,5 +6,5 @@ requirements:
 IAM Credentials
 Know your region, example: us-west-1
 
-sudo chmod +x deploy.sh
+sudo chmod +x deploy.sh\
 ./deploy.sh
