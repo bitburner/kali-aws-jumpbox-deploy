@@ -179,7 +179,7 @@ do
 done
 aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName'
 
-echo -e "SSH connect string for later if needed: ssh -i $ssh_key kali@$public_dns"
+echo -e "SSH connect string for later if needed: ssh -i $ssh_key kali@$public_dns 'bash -s' < commands.sh"
 
 # connect to SSH
 # Copy the interactive script to the endpoint
