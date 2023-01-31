@@ -29,6 +29,20 @@ collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data 
 
 # start a GUI if needed and RDP through SSH
 gui_access="rdesktop -u user -p password example.com"
+
+# Read the user input
+echo "Select an option:"
+echo "1. aws cli setup"
+echo "2. ngrok"
+echo "3. nmap scan"
+echo "4. dirbuster scan"
+echo "5. s3sec check"
+echo "6. hailmary scan"
+echo "7. collect data"
+echo "8. GUI access"
+echo "9. Exit"
+read OPTION
+
 # Execute the appropriate code based on user input
   case $OPTION in
     1)
