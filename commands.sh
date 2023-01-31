@@ -20,13 +20,15 @@ echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selecti
 sudo apt-get update && sudo apt-get install -y -q kali-tools-web
 echo "✅ Done updating and installing metapackages"
 
+# install pip
+echo "⚡ Installing PIP"
+sudo apt install pip
+echo "✅ Done installing PIP"
+
 # install awscli for later if tools need it.
 echo "⚡ Installing AWS CLI"
-pip3 install awscli
+pip install awscli
 echo "✅ Done installing AWS CLI"
-
-# make a directory to store 3rd party added tools from github etc
-echo ""
 
 echo "⚡ Installing prower via pip"
 # Installing prower via pip
@@ -35,10 +37,11 @@ echo "✅ Done installing Prower via pip"
 
 echo ""
 # making a tools directory
-echo "⚡ Making a tools directory"
-mkdir /home/kali/tools/
+echo "⚡ Making a tools and data directory"
+sudo mkdir /home/kali/tools/
+sudo mkdir /home/kali/tools/data
 cd /home/kali/tools
-echo "✅ Done making tools directory"
+echo "✅ Done making tools and data directory"
 
 echo ""
 # installing s3sec from github
@@ -46,12 +49,6 @@ echo "⚡ Installing tool s3sec to test AWS S3 buckets for read/write/delete acc
 git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
-
-# installing dialog for the menus for this script
-#echo "⚡ Installing dialog for the menus for this script"
-#sudo apt-get install dialog
-#echo "✅ Done installing dialog"
-#echo ""
 
 # Start to ask the user what to do now
 read -p "❔ What is the URL of the target box you are testing?: " target
