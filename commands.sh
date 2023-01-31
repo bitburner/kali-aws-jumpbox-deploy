@@ -15,7 +15,9 @@ echo "🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉�
 echo ""
 # update and install metapackages
 echo "⚡ Updating and installing meta packages headless and webtools"
-DEBIAN_FRONTEND=readline sudo apt update && sudo apt install -y kali-tools-web
+#DEBIAN_FRONTEND=readline sudo apt update && sudo apt install -y kali-tools-web
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+sudo apt-get update && sudo apt-get install -y -q kali-tools-web
 echo "✅ Done updating and installing metapackages"
 
 # install awscli for later if tools need it.
