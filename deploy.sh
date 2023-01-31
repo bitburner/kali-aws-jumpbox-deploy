@@ -182,5 +182,5 @@ aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Insta
 echo -e "SSH connect string for later if needed: ssh -i $ssh_key kali@$public_dns"
 
 # connect to SSH
-
+# Copy the interactive script to the endpoint
 ssh -o "StrictHostKeyChecking no" -t -i "$ssh_key" kali@$public_dns 'bash -s' < commands.sh
