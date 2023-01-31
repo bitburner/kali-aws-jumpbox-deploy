@@ -89,47 +89,5 @@ collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data 
 # start a GUI if needed and RDP through SSH
 gui_access="rdesktop -u user -p password example.com"
 
-#!/bin/bash
-
-option="$1"
-
-case $option in
-  "AWS CLI setup on Jumpbox")
-    # aws
-    $aws_cli_setup
-    ;;
-  "Install and configure Ngrok")
-    # ngrok
-    $ngrok
-    ;;
-  "Run NMAP and choose a scan type")
-    # nmap
-    $nmap
-    ;;
-  "Run dirbuster and choose a scan type")
-    # dirbuster
-    $dirbuster
-    ;;
-  "Run s3sec and choose a scan type")
-    # s3sec
-    $s3sec
-    ;;
-  "Do a hail mary - full scans all data")
-    # hailmary
-    $hailmary
-    ;;
-  "Collect the data and download via ssh")
-    # collect data
-    $collect_data
-    ;;          
-  "Setup Gui Access")
-    # gui setup
-    $gui_access
-    ;;          
-  "Exit this script and use Kali manually")
-    exit 0
-    ;;
-  *) 
-    echo "Invalid option"
-    ;;
-esac
+# Copy the interactive script to the endpoint
+scp interact.sh user@endpoint:/home/kali/tools/interact.sh
