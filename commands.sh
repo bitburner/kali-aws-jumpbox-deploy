@@ -46,23 +46,7 @@ echo "✅ Done making tools and data directory"
 echo ""
 # installing s3sec from github
 echo "⚡ Installing tool s3sec to test AWS S3 buckets for read/write/delete access"
-git clone https://github.com/0xmoot/s3sec
+sudo git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
-echo ""
-
-ec2_id = cat /sys/devices/virtual/dmi/id/board_asset_tag
-# copy script over
-aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].State.Name'
-
-public_dns=$(aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName' | sed 's/\"//g')
-
-scp interact.sh kali@$public_dns:/home/kali/tools/interact.sh
-echo "done copying script over"
-echo ""
-echo "====================================================="
-echo ""
-echo " trying to launch interact script..."
-echo ""
-echo "===================================="
 echo ""
 bash /home/kali/interact.sh
