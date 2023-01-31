@@ -51,9 +51,18 @@ echo "✅ Done installing s3sec"
 echo ""
 
 # Start to ask the user what to do now
-read -p "❔ What is the URL of the target box you are testing?: " target
-echo ""
-echo "🎯 Storing variable 'target' = $target for later use..."
+#read -p "❔ What is the URL of the target box you are testing?: " target
+#echo ""
+#echo "🎯 Storing variable 'target' = $target for later use..."
+#echo ""
+target="$1"
+
+if [ -z "$target" ]; then
+  echo "What is the URL of the target box you are testing?"
+  read target
+fi
+
+echo "Storing variable target = $target for later use..."
 echo ""
 
 # setup any awscli stuff on the kali box
@@ -80,47 +89,47 @@ collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data 
 # start a GUI if needed and RDP through SSH
 gui_access="rdesktop -u user -p password example.com"
 
-PS3="Please select an option: "
-options=("AWS CLI setup on Jumpbox" "Install and configure Ngrok" "Run NMAP and choose a scan type" "Run dirbuster and choose a scan type" "Run s3sec and choose a scan type" "Do a hail mary - full scans all data" "Collect the data and download via ssh" "Setup Gui Access" "Exit this script and use Kali manually")
-select opt in "${options[@]}"; do
-  case $opt in
-    "AWS CLI setup on Jumpbox")
-      # aws
-      $aws_cli_setup
-      ;;
-    "Install and configure Ngrok")
-      # ngrok
-      $ngrok
-      ;;
-    "Run NMAP and choose a scan type")
-      # nmap
-      $nmap
-      ;;
-    "Run dirbuster and choose a scan type")
-      # dirbuster
-      $dirbuster
-      ;;
-    "Run s3sec and choose a scan type")
-      # s3sec
-      $s3sec
-      ;;
-    "Do a hail mary - full scans all data")
-      # hailmary
-      $hailmary
-      ;;
-    "Collect the data and download via ssh")
-      # collect data
-      $collect_data
-      ;;          
-    "Setup Gui Access")
-      # gui setup
-      $gui_access
-      ;;          
-    "Exit this script and use Kali manually")
-      exit 0
-      ;;
-    *) 
-      echo "Invalid option"
-      ;;
-  esac
-done
+#!/bin/bash
+
+option="$1"
+
+case $option in
+  "AWS CLI setup on Jumpbox")
+    # aws
+    $aws_cli_setup
+    ;;
+  "Install and configure Ngrok")
+    # ngrok
+    $ngrok
+    ;;
+  "Run NMAP and choose a scan type")
+    # nmap
+    $nmap
+    ;;
+  "Run dirbuster and choose a scan type")
+    # dirbuster
+    $dirbuster
+    ;;
+  "Run s3sec and choose a scan type")
+    # s3sec
+    $s3sec
+    ;;
+  "Do a hail mary - full scans all data")
+    # hailmary
+    $hailmary
+    ;;
+  "Collect the data and download via ssh")
+    # collect data
+    $collect_data
+    ;;          
+  "Setup Gui Access")
+    # gui setup
+    $gui_access
+    ;;          
+  "Exit this script and use Kali manually")
+    exit 0
+    ;;
+  *) 
+    echo "Invalid option"
+    ;;
+esac
