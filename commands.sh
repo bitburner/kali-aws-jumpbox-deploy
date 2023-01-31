@@ -49,6 +49,8 @@ echo "⚡ Installing tool s3sec to test AWS S3 buckets for read/write/delete acc
 git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
+
+ec2_id = cat /sys/devices/virtual/dmi/id/board_asset_tag
 # copy script over
 aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].State.Name'
 
