@@ -70,4 +70,3 @@ gui_access="rdesktop -u user -p password example.com"
       echo "Invalid option"
       ;;
   esac
-done
