@@ -13,14 +13,6 @@ echo "🏴‍☠️              By: B̤̿it̺̕B͓̚urneȑ🔥             �
 echo "🏴‍☠️                                          🏴‍☠️"
 echo "🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉"
 echo ""
-# copy script over
-public_dns=$(aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName' | sed 's/\"//g')
-
-scp interact.sh kali@$public_dns:/home/kali/tools/interact.sh
-echo "done copying script over"
-echo ""
-echo "====================================================="
-echo ""
 # update and install metapackages
 echo "⚡ Updating and installing meta packages headless and webtools"
 #DEBIAN_FRONTEND=readline sudo apt update && sudo apt install -y kali-tools-web
@@ -57,5 +49,16 @@ echo "⚡ Installing tool s3sec to test AWS S3 buckets for read/write/delete acc
 git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
+# copy script over
+public_dns=$(aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName' | sed 's/\"//g')
 
+scp interact.sh kali@$public_dns:/home/kali/tools/interact.sh
+echo "done copying script over"
+echo ""
+echo "====================================================="
+echo ""
+echo " trying to launch interact script..."
+echo ""
+echo "===================================="
+echo ""
 ssh kali@$public_dns "bash /home/kali/tools/interact.sh"
