@@ -183,4 +183,5 @@ echo -e "SSH connect string for later if needed: ssh -i $ssh_key kali@$public_dn
 
 # connect to SSH
 # Copy the interactive script to the endpoint
-ssh -o "StrictHostKeyChecking no" -t -i "$ssh_key" kali@$public_dns 'bash -s' < commands.sh
+#ssh -o "StrictHostKeyChecking no" -t -i "$ssh_key" kali@$public_dns 'bash -s' < commands.sh
+ssh -o "StrictHostKeyChecking no" -t -i "$ssh_key" kali@$public_dns 'bash -s' < commands.sh; scp -i "$ssh_key" interact.sh kali@$public_dns:~/
