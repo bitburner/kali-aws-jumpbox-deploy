@@ -13,6 +13,14 @@ echo "🏴‍☠️              By: B̤̿it̺̕B͓̚urneȑ🔥             �
 echo "🏴‍☠️                                          🏴‍☠️"
 echo "🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉🏴‍☠️🦉"
 echo ""
+# copy script over
+public_dns=$(aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName' | sed 's/\"//g')
+
+scp interact.sh kali@$public_dns:/home/kali/tools/interact.sh
+echo "done copying script over"
+echo ""
+echo "====================================================="
+echo ""
 # update and install metapackages
 echo "⚡ Updating and installing meta packages headless and webtools"
 #DEBIAN_FRONTEND=readline sudo apt update && sudo apt install -y kali-tools-web
@@ -50,43 +58,4 @@ git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
 
-# Start to ask the user what to do now
-#read -p "❔ What is the URL of the target box you are testing?: " target
-#echo ""
-#echo "🎯 Storing variable 'target' = $target for later use..."
-#echo ""
-target="$1"
-
-if [ -z "$target" ]; then
-  echo "What is the URL of the target box you are testing?"
-  read target
-fi
-
-echo "Storing variable target = $target for later use..."
-echo ""
-
-# setup any awscli stuff on the kali box
-aws_cli_setup="aws configure --profile kali"
-
-# this is so you can close the WAF if needed or if your IP changes or need to bypass firewalls etc
-ngrok="ngrok http 80"
-
-# the good ol standard nmap scan
-nmap="nmap -sS -p- -A -oN $target nmap.txt"
-
-# a good comprehensive single level directory scan should be fine
-dirbuster="dirbuster -u $target -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt"
-
-# I need to look a the options for this one again but it checks permissions on S3 buckets etc
-s3sec="s3sec check --region us-west-2"
-
-# do a hail mary - all the full scans back to back
-hailmary="nmap -sS -p- -A -oN nmap.txt && dirbuster -u $target -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt && s3sec check --bucket my-bucket --region us-west-1"
-
-# this should gather all created data and make a zip then open a new window with an SSH command it creates to download the zip
-collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data && scp data.tar.gz data'"
-
-# start a GUI if needed and RDP through SSH
-gui_access="rdesktop -u user -p password example.com"
-
-
+ssh kali@$public_dns "bash /home/kali/tools/interact.sh"
