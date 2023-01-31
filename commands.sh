@@ -50,6 +50,8 @@ git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
 # copy script over
+aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].State.Name'
+
 public_dns=$(aws ec2 describe-instances --instance-ids $ec2_id --query 'Reservations[0].Instances[0].PublicDnsName' | sed 's/\"//g')
 
 scp interact.sh kali@$public_dns:/home/kali/tools/interact.sh
