@@ -110,7 +110,7 @@ then
 else
   sec_id=$(echo "$sec_list" | jq -r ".[$((sec_choice-1))].ID")
 fi
-aws ec2 authorize-security-group-egress --group-id $sec_id --protocol -1 --port -1 --cidr 0.0.0.0/0
+#aws ec2 authorize-security-group-egress --group-id $sec_id --protocol -1 --port -1 --cidr 0.0.0.0/0
 
 # Find the Kali Image AMI in your region
 
