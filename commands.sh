@@ -22,7 +22,7 @@ echo "✅ Done updating and installing metapackages"
 
 # install pip
 echo "⚡ Installing PIP"
-sudo apt install pip
+sudo apt install -y pip
 echo "✅ Done installing PIP"
 
 # install awscli for later if tools need it.
