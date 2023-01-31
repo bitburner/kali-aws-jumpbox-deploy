@@ -29,47 +29,44 @@ collect_data="tar -czf data.tar.gz /data && ssh user@example.com 'mkdir -p data 
 
 # start a GUI if needed and RDP through SSH
 gui_access="rdesktop -u user -p password example.com"
-
-PS3="Please select an option: "
-options=("AWS CLI setup on Jumpbox" "Install and configure Ngrok" "Run NMAP and choose a scan type" "Run dirbuster and choose a scan type" "Run s3sec and choose a scan type" "Do a hail mary - full scans all data" "Collect the data and download via ssh" "Setup Gui Access" "Exit this script and use Kali manually")
-select opt in "${options[@]}"; do
-  case $opt in
-    "AWS CLI setup on Jumpbox")
+# Execute the appropriate code based on user input
+  case $OPTION in
+    1)
       # aws
       $aws_cli_setup
       ;;
-    "Install and configure Ngrok")
+    2)
       # ngrok
       $ngrok
       ;;
-    "Run NMAP and choose a scan type")
-      # nmap
+    3)
+     # nmap
       $nmap
       ;;
-    "Run dirbuster and choose a scan type")
+    4)
       # dirbuster
       $dirbuster
       ;;
-    "Run s3sec and choose a scan type")
-      # s3sec
+    5)
+       # s3sec
       $s3sec
       ;;
-    "Do a hail mary - full scans all data")
+    6)
       # hailmary
       $hailmary
       ;;
-    "Collect the data and download via ssh")
-      # collect data
+    7)
+     # collect data
       $collect_data
-      ;;          
-    "Setup Gui Access")
+      ;;
+    8)
       # gui setup
       $gui_access
-      ;;          
-    "Exit this script and use Kali manually")
+      ;;
+    9)
       exit 0
       ;;
-    *) 
+    *)
       echo "Invalid option"
       ;;
   esac
