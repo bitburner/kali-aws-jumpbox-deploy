@@ -49,4 +49,4 @@ echo "⚡ Installing tool s3sec to test AWS S3 buckets for read/write/delete acc
 sudo git clone https://github.com/0xmoot/s3sec
 echo "✅ Done installing s3sec"
 echo ""
-bash /home/kali/interact.sh
+bash interact.sh
